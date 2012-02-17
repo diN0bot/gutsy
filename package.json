@@ -1,0 +1,23 @@
+{
+  "name": "gutsy",
+  "bin":"./bin/gutsy",
+  "contributors": [
+    "Brandon Philips <brandon@ifup.org>",
+    "Lucy Mendel <lucy.mendel@rackspace.com>",
+    "Felix Sargent <felix.sargent@rackspace.com>"
+  ],
+  "version": "0.0.1",
+  "dependencies": {
+    "async": "0.1.x",
+    "connect": "1.7.x",
+    "express": "2.5.x",
+    "logmagic": "0.1.x",
+    "sprintf": "0.1.x",
+    "jade": "0.20.x",
+    "optimist": "0.2.x",
+    "request": "2.2.x"
+  },
+  "engines": {
+    "node": ">=0.4.1 <0.7.0"
+  }
+}

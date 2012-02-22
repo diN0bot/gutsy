@@ -16,8 +16,8 @@ block content
           h2= description
 
       .span9
-        .contacts
-          if contacts
+        if contacts
+          .contacts
             team = contacts.ops
             team_name = "Ops Team"
             include includes/team_contacts
@@ -37,8 +37,8 @@ block content
             team = contacts.product
             team_name = "Product Team"
             include includes/team_contacts
-        .environments
-          if environments
+        if environments
+          .environment
             ul
               each environ in environments
                 li #{environ.type} #{environ.platforms} #{environ.regions}

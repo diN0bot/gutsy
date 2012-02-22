@@ -4,10 +4,10 @@ Save a devops.json endpoint to file using the crawler:
 
 ```
 cp settings.js.example settings.js
-./bin/gutsy -c
+./bin/gutsy --crawler
 ```
 
-The web app:
+Run the web app:
 
 ```
 ./bin/gutsy

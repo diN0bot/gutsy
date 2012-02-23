@@ -4,9 +4,11 @@ var jade = require('jade');
 var assert = require('assert');
 
 exports.run = function() {
+  console.log("Running tests: ");
   var viewTester = new ViewTester();
   viewTester.test_view('index.jade', 'devops_fake_full.json');
   viewTester.test_view('index.jade', 'devops_fake_min.json');
+  console.log("Done.");
 }
 
 /** The test class
@@ -39,5 +41,6 @@ ViewTester.prototype.test_view = function(view, devopsjson, fn) {
     if (fn) {
       fn(html);
     }
+    console.log('.')
   });
 };

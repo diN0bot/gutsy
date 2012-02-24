@@ -24,7 +24,7 @@ exports.run = function() {
  */
 var ViewTester = function(options) {
   this._options = options || {};
-  this._view_path = path.join(__dirname, '..', '..',  'lib', 'web', 'views');
+  this._view_path = path.join(__dirname, '..', '..', 'lib', 'web', 'views');
   this._fixture_path = path.join(__dirname, '..', '..', 'fixtures');
 };
 
@@ -37,7 +37,7 @@ var ViewTester = function(options) {
  * @param {function} fn (optional) a callback that takes the rendered html response as an argument
  */
 ViewTester.prototype.test_view = function(view, devopsjson, middlewares, fn) {
-    var view_path, context, middleware, i;
+  var view_path, context, middleware, i;
 
   view_path = path.join(this._view_path, view);
   context = path.join(this._fixture_path, devopsjson);
@@ -46,8 +46,8 @@ ViewTester.prototype.test_view = function(view, devopsjson, middlewares, fn) {
 
   if (middlewares) {
     for (var i = 0; i < middlewares.length; i++) {
-	middleware = middlewares[i];
-	middleware(context)(null, null, function(){});
+      middleware = middlewares[i];
+      middleware(context)(null, null, function(){});
     }
   }
 

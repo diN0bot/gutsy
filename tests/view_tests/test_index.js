@@ -4,10 +4,13 @@ var jade = require('jade');
 var assert = require('assert');
 
 exports.run = function() {
-  console.log("Running tests: ");
   var viewTester = new ViewTester();
-  viewTester.test_view('index.jade', 'devops_fake_full.json');
-  viewTester.test_view('index.jade', 'devops_fake_min.json');
+  console.log("Running tests: ");
+
+  viewTester.test_view('index.jade', 'example-minimum.json');
+  viewTester.test_view('index.jade', 'example-simple.json');
+  viewTester.test_view('index.jade', 'example-full.json');
+
   console.log("Done.");
 }
 

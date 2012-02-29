@@ -14,6 +14,7 @@ Save a devops.json endpoint to file using the crawler:
 
 ```
 cp settings.js.example settings.js
+mkdir fixtures
 ./bin/gutsy --crawler
 ```
 

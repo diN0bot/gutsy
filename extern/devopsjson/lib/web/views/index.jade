@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .container-fluid
+    .row-fluid
+      .span12
+        div.page-header
+          h2 JSON Validator
+
+        p Welcome to the JSON Validator.  Input your json below to check it against the available schema
+
+        form(class="form-horizontal", method="POST", action="/")
+          fieldset
+            legend Validation Form
+            div.control-group
+              label.control-label JSON Input
+              div.controls
+                textarea(class="span8", rows="20", name="json_text", style="font-family: courier;") #{json_text}
+                p(class="help-block") Enter the JSON text you wish to validate here.
+            div.form-actions
+              button(class="btn btn-primary", type="submit") Validate
+
+        if report
+          if report.errors.length === 0
+            div.alert.alert-success 
+              a(class="close", data-dismiss="alert", href="#") &times;
+              strong Success!
+              p Your JSON is valid
+          else
+            div.alert.alert-error
+              a(class="close", data-dismiss="alert", href="#") &times;
+              strong Failure!
+              p Your JSON is invalid
+              each error, i in report.errors
+                p Error #{i}
+                ul
+                each val, key in error
+                  li #{key}: #{val}
+            if report.validated.length > 0
+              div.alert.alert-info
+                a(class="close", data-dismiss="alert", href="#") &times;
+                strong Validated Fields
+                ul
+                each val, key in report.validated
+                  li
+                    a(href="#{val}") #{key}

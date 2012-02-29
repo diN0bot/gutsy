@@ -1,6 +1,6 @@
-exports.host = "projects.ifup.org";
-exports.protocol = "http";
-exports.port = "80";
-exports.path = "/devops.json";
+exports.host = "raw.github.com";
+exports.protocol = "https";
+exports.port = "443";
+exports.path = "/racker/devopsjson/master/examples/example-full.json";
 
 exports.filename = "fixtures/devops.json";

@@ -4,9 +4,14 @@ table.table.table-striped.table-bordered.table-condensed.table-stats
     tr
       th.username Username
       th #{metric.unit}
+  tfoot
+    tr
+      td
+      td #{metric.aggregate}
   tbody
     each stat in metric.stats
       each key, val in stat
         tr
-          td #{val}
+          td
+            a(href='https://github.com/#{val}', target='_blank') #{val}
           td #{key}

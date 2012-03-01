@@ -34,7 +34,7 @@ Each Team object contains:
 
 - Teamname (Required)
 - Members (Required) Must contain at least one member
-    - Name and SSO fields are required
+    - The SSO field is required
     - Other field names must be valid URI protocols
 
 ````
@@ -187,6 +187,25 @@ Useful Examples:
         "http://auth.api.example.com/devops.json",
         "http://usage.api.example.com/devops.json"
     ],
+````
+
+### Events (Optional)
+
+````
+  "events": [{
+      "name": "Private Beta",
+      "description": "10 selected customers",
+      "timestamp": 1330626349,
+      "related_links": [
+          "http://bugtracker.com/mytickets?milestone=privatebeta"
+      ]}, {
+      "name": "Design Summit July 2012",
+      "description": "This is a working session to figure out project Earth"",
+      "timestamp": 1341205200,
+      "related_links": [
+          "http://eventbrite.com/register?event=123"
+      ]
+  }]
 ````
 
 ### KPI JSON URI (Optional)

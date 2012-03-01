@@ -47,7 +47,7 @@ exports.schema = {
                                 'name': {
                                     'description': 'Full name of team member',
                                     'type': 'string',
-                                    'optional': false,
+                                    'optional': true,
                                 },
                                 'sso': {
                                     'description': 'SSO for team member',
@@ -191,6 +191,24 @@ exports.schema = {
             'items': {
                 'type': 'string',
                 'optional': true
+            }
+        },
+        'events': {
+            'description': 'List of events, such as milestone launches and conferences',
+            'type': 'array',
+            'optional': true,
+            'items': {
+                'type': 'object',
+                'optional': true,
+                'properties': {
+                    'name': {'type': 'string'},
+                    'description': {'type': 'string'},
+                    'timestamp': {'type': 'integer'},
+                    'related_links': {
+                        'type': 'array',
+                        'optional': true,
+                        'items': {'type': 'string', 'optional':true}}
+                }
             }
         },
         'kpi_spec': {

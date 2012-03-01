@@ -5,18 +5,18 @@ block content
     .row-fluid
       .span12
         div.page-header
-          h2 JSON Validator
+          h2 <a href="http://github.com/racker/devopsjson">devops.json</a> Validator
 
-        p Welcome to the JSON Validator.  Input your json below to check it against the available schema
+        p Paste your devops.json data below to validate it against the <a href="/schema">schema</a>.
 
         form(class="form-horizontal", method="POST", action="/")
           fieldset
             legend Validation Form
             div.control-group
-              label.control-label JSON Input
+              label.control-label devops.json data
               div.controls
                 textarea(class="span8", rows="20", name="json_text", style="font-family: courier;") #{json_text}
-                p(class="help-block") Enter the JSON text you wish to validate here.
+                p(class="help-block") Enter the devops.json text that you wish to validate.
             div.form-actions
               button(class="btn btn-primary", type="submit") Validate
 
@@ -25,12 +25,12 @@ block content
             div.alert.alert-success 
               a(class="close", data-dismiss="alert", href="#") &times;
               strong Success!
-              p Your JSON is valid
+              p Your devops.json is valid
           else
             div.alert.alert-error
               a(class="close", data-dismiss="alert", href="#") &times;
               strong Failure!
-              p Your JSON is invalid
+              p Your devops.json is invalid
               each error, i in report.errors
                 p Error #{i}
                 ul

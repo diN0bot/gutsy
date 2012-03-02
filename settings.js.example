@@ -1,10 +1,10 @@
 
 // list of devopsjson uris
-exports.devopsjson_uris = [
-    "https://raw.github.com/racker/devopsjson/master/examples/example-full.json",
-    "https://raw.github.com/racker/devopsjson/master/examples/example-simple.json",
-    "https://raw.github.com/racker/devopsjson/master/examples/example-min.json"
-];
+exports.devopsjson_uris = {
+    full: "https://raw.github.com/racker/devopsjson/master/examples/example-full.json",
+    simple: "https://raw.github.com/racker/devopsjson/master/examples/example-simple.json",
+    min: "https://raw.github.com/racker/devopsjson/master/examples/example-minimum.json"
+};
 
 //where the crawled devopsjson data will end up
 exports.saved_crawls_path = "fixtures";

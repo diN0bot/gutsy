@@ -1,8 +1,8 @@
 var path = require('path');
 var jade = require('jade');
-var middleware = require('../../lib/web/middleware');
-var contexter = require('../../lib/web/contexter');
-var utils = require('../../lib/utils');
+var middleware = require('web/middleware');
+var utils = require('utils');
+var contexter = require('web/contexter');
 
 /**
  * Runs a view test. Calls assert and test.finish().

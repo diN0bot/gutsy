@@ -43,10 +43,23 @@ html(lang='en')
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
-          a.brand(href='/') All Projects
+          a.brand(href='/') Dashboard
           ul.nav
             each url, text in navbar
-              li
-                a(href='#{url}') #{text}
+              if text == active
+                li.active
+                  a(href='#{url}') #{text}
+              else
+                li
+                  a(href='#{url}') #{text}
+            li.divider-vertical
+            if "About" == active
+              li.pull-right.active
+                a(href='/about') About
+            else
+              li.pull-right
+                a(href='/about') About
+            li.pull-right
+              a(href='http://dev.rax.io') dev.rax.io
 
     block content

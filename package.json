@@ -22,7 +22,6 @@
   },
   "scripts": {
     "test": "./bin/test",
-    "start": "./bin/gutsy",
-    "crawl": "./bin/crawl"
+    "start": "./bin/gutsy"
   }
 }

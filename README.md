@@ -14,7 +14,7 @@ Save a devops.json endpoint to file using the crawler:
 
 ```
 cp settings.js.example settings.js
-npm crawl
+./bin/crawl
 ```
 
 ## Website

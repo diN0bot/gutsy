@@ -23,13 +23,15 @@ $(document).ready(function() {
     var related_links = $(this).children(".related_links");
     if (timestamp) {
       timestamp = parseInt(timestamp) * 1000;
-      if (max < timestamp) { max = timestamp; }
-      events.push({
-        timestamp: timestamp,
-        name: name,
-        description: description,
-        related_links: related_links
-      });
+      if (timestamp > now) {
+        if (max < timestamp) { max = timestamp; }
+        events.push({
+          timestamp: timestamp,
+          name: name,
+          description: description,
+          related_links: related_links
+        });
+      }
     }
   });
   if (events.length > 1) {

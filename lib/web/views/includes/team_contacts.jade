@@ -1,12 +1,22 @@
-p
-  h2 #{team.team_name}
-  ul
-  each contact in team.members
-    p
-      h4 #{contact.name}
-      ul
-      for uri,type in contact
-        if type == "github" || type == "mailto"
-          li #{type}: <a href=#{uri}>#{uri}</a>
+li
+  #{team.team_name}
+  ul.unstyled.contact-team
+    each contact in team.members
+      li
+        span.plus +
+        if contact.name
+          if contact.oncall
+            span.contact-name.on-call #{contact.name}
+          else
+            span.contact-name #{contact.name}
         else
-          li #{type}: #{uri}
+          if contact.oncall
+            span.contact-name.on-call #{contact.sso}
+          else
+            span.contact-name #{contact.sso}
+        ul
+          for uri,type in contact
+            if type == "github" || type == "mailto"
+              li #{type}: <a href=#{uri}>#{uri}</a>
+            else
+              li #{type}: #{uri}

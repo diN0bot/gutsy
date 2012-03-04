@@ -27,12 +27,14 @@ block content
           ul#events
             for event in events
               li
-                span.timestamp #{event.timestamp}
-                span.name #{event.name}
-                span.description #{event.description}
-                if event.related_links
-                  for link in event.related_links
-                    a(href="#{link}") #{link}
+                p.timestamp #{event.timestamp}
+                p.name #{event.name}
+                p.description #{event.description}
+                ul.related_links
+                  if event.related_links
+                    for link in event.related_links
+                      li
+                        a(href="#{link}") #{link}
 
       .span3
         h1 Contacts

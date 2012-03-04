@@ -8,8 +8,6 @@ $(document).ready(function() {
   // list of {name:'', description:'', timestamp: converted to milliseconds!}
   // includes event representing "now".
   var events = [];
-  // timestampless events
-  var announcements = [];
   var now = (new Date()).getTime();
   var max = 0;
   events = [{
@@ -20,21 +18,17 @@ $(document).ready(function() {
   $("#events li").each(function(idx, el) {
     var event = $(this);
     var timestamp = $(this).children(".timestamp").text();
-    var name = $(this).children(".name").text();
-    var description = $(this).children(".description").text();
+    var name = $(this).children(".name");
+    var description = $(this).children(".description");
+    var related_links = $(this).children(".related_links");
     if (timestamp) {
       timestamp = parseInt(timestamp) * 1000;
       if (max < timestamp) { max = timestamp; }
       events.push({
         timestamp: timestamp,
         name: name,
-        description: description
-      });
-    } else {
-      announcements.push({
-        timestamp: timestamp,
-        name: name,
-        description: description
+        description: description,
+        related_links: related_links
       });
     }
   });
@@ -61,19 +55,14 @@ $(document).ready(function() {
         }
         el.text(days_remaining);
 
-        var tooltip = $(["<div class=\"alert hide\">",
-                         "<p class=\"tooltip-name\">",
-                         event.name,
-                         "</p>",
-                         "<span class=\"tooltip-description\">",
-                         event.description,
-                         "</span>",
-                         "<span class=\"tooltip-timestamp\">",
-                         days_remaining,
-                         " days left - ",
-                         (new Date(event.timestamp)).toDateString(),
-                         "</span>",
-                         "</div>"].join(""));
+        var tooltip = $("<div></div>").addClass("alert hide timeline-tooltip");
+        tooltip.append(event.name);
+        tooltip.append(event.description);
+        tooltip.append(event.related_links);
+        tooltip.append($("<span></span>").addClass("date-info").append([
+            days_remaining,
+            " days left - ",
+            (new Date(event.timestamp)).toDateString()].join("")));
         el.append(tooltip);
         el.click(function() {
           $(this).children().toggle();
@@ -83,5 +72,8 @@ $(document).ready(function() {
     }
     timeline.css("margin-top", "-15px");
     timeline.css("height", "20px");
+    var events = $("#events");
+    events.prev().detach();
+    events.detach();
   }
 });

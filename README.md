@@ -1,9 +1,9 @@
 # Gutsy DevOps Dashboard
 
-Gutsy is an app for an out-of-the-box DevOps Dashboard built on top of a 
+Gutsy is an app for an out-of-the-box DevOps Dashboard built on top of a
 [DevOps JSON URI](/racker/devopsjson).
 
-The goal is to reflect not only the most recent raw devops.json data, 
+The goal is to reflect not only the most recent raw devops.json data,
 but also to realize related links such as on-call rotations.
 
 [Demo](http://gutsy.nodejitsu.com/)
@@ -14,6 +14,7 @@ Save a devops.json endpoint to file using the crawler:
 
 ```
 cp settings.js.example settings.js
+mkdir fixtures
 ./bin/crawl
 ```
 

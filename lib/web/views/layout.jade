@@ -12,7 +12,7 @@ html(lang='en')
     block css
       link(href='/static/bootstrap/css/bootstrap.css', rel='stylesheet')
       link(href='/static/bootstrap/css/bootstrap-responsive.css', rel='stylesheet')
-      //link(href='/static/css/all.css', rel='stylesheet')
+      link(href='/static/css/all.less', rel='stylesheet/less', type='text/css')
 
     block scripts
       script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
@@ -33,11 +33,14 @@ html(lang='en')
     link(rel='apple-touch-icon', sizes='72x72', href='images/apple-touch-icon-72x72.png')
     link(rel='apple-touch-icon', sizes='114x114', href='images/apple-touch-icon-114x114.png')
   body
-    .navbar
-      .navbar-inner
-        .container-fluid
-          a.brand(href='/') Dashboard
-          ul.nav
+    .notbootstrap-navbar
+      .notbootstrap-navbar-inner
+        .notbootstrap-container-fluid
+          if 'Dashboards' == active
+            a.active.brand(href='/') Dashboards
+          else
+            a.brand(href='/') Dashboards
+          ul.internal
             each url, text in navbar
               if text == active
                 li.active
@@ -45,14 +48,14 @@ html(lang='en')
               else
                 li
                   a(href='#{url}') #{text}
-            li.divider-vertical
+          ul.external
             if "About" == active
-              li.pull-right.active
+              li.active
                 a(href='/about') About
             else
-              li.pull-right
+              li
                 a(href='/about') About
-            li.pull-right
+            li
               a(href='http://dev.rax.io') dev.rax.io
 
     block content

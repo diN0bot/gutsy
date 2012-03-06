@@ -22,6 +22,7 @@ block content
                   tr
                     th Priority
                     th Status
+                    th Project
                     th Created
                     th Name
                 tbody
@@ -32,6 +33,7 @@ block content
                       // a hack.
                       td #{priority}
                       td #{statusName}
+                      td #{asset.attributes['Scope.Name']}
                       td #{asset.formattedDate}
                       td
                         a(href="http://#{related_apis.version_one.host}/#{related_apis.version_one.name}/defect.mvc/Summary?oidToken=#{asset.id}") #{asset.attributes['Name']}

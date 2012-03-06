@@ -14,6 +14,8 @@ $(document).ready(function() {
     var info = el.next();
     if (!el.hasClass("on-call")) {
       info.hide();
+    } else {
+      toggle.text("-");
     }
     info.css("padding", "5px");
 

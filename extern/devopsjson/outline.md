@@ -163,16 +163,20 @@ Useful Examples:
           "schedule_id": "EDDY42",
           "port": 80,
           "auth": "user:pass"
+        },
+       "github": {
+          "url": "http://github.com",
+          "org": "racker",
+          "repo": "gutsy",
+          "username": "__external__",
+          "apikey": "__external__"
         }
-        "version_one": {
-            "host": "www.v1host.com",
-            "port": 443,
-            "name": "PROJECT",
-            "project": 42,
-            "auth": "user:pass"
-        }
-    },
+    }
 ````
+
+Note the use of `__external__` to indicate that these credentials must be found in a source outside of devops.json.
+
+The spec does not cover how consumers handle external credentials. For example, the Gutsy dashboard looks in local settings for external credentials.
 
 ### Dependent Services (Optional)
 

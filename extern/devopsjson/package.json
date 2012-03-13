@@ -7,7 +7,7 @@
     "Felix Sargent <felix.sargent@rackspace.com>",
     "Chris Gilmer <chris.gilmer@rackspace.com>"
   ],
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "async": "0.1.x",
     "connect": "1.7.x",
@@ -27,6 +27,7 @@
     "devopsjson.com"
   ],
   "scripts": {
-    "start": "bin/devopsjson"
+    "start": "bin/devopsjson",
+    "test": "bin/tester"
   }
 }

@@ -182,6 +182,34 @@ exports.schema = {
                     'project': 'integer',
                     'port': 'integer'
                 }
+            },
+            'telligent': {
+                'type': 'object',
+                'optional': true,
+                'additionalProperties': {
+                    'url': 'string',
+                    'auth': 'string'
+                }
+            },
+            'newrelic': {
+                'type': 'object',
+                'optional': true,
+                'additionalProperties': {
+                    'accountId': 'string',
+                    'appid': 'string',
+                    'apikey': 'string'
+                }
+            },
+            'github': {
+                'type': 'object',
+                'optional': true,
+                'additionalProperties': {
+                    'url': 'string',
+                    'org': 'string',
+                    'repo': 'string',
+                    'username': 'string',
+                    'apikey': 'string'
+                }
             }
         },
         'dependent_services': {

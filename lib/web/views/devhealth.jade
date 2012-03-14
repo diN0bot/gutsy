@@ -23,8 +23,8 @@ block content
 
         if ticket_type.errors
           p API returned the following error:
-          p.alert #{ticket_type.errors.code}: #{ticket_type.errors.code.message}
+          p.alert #{ticket_type.errors.code}: #{ticket_type.errors.code
 
-        each metric in ticket_type
-          !{JSON.stringify(metric)}
-          //include includes/github_stats
+        each metric in ticket_type.metrics
+          //!{JSON.stringify(metric)}
+          include includes/github_stats

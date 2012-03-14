@@ -1,4 +1,4 @@
-h3 #{metric.name}
+h3 #{metric.name} for #{ticket_type}
 table.table.table-striped.table-bordered.table-condensed.table-stats
   thead
     tr
@@ -7,7 +7,7 @@ table.table.table-striped.table-bordered.table-condensed.table-stats
   tfoot
     tr
       td
-      td #{metric.aggregate}
+      td #{metric.aggregate} 
   tbody
     each stat in metric.stats
       each key, val in stat

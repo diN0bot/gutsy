@@ -11,15 +11,20 @@ block content
   | </script>
   .container
     .content
-      if github  
-        h1 !{JSON.stringify(github)}
-      else if github.data.error
-        p API returned the following error:
-        p.alert #{github.data.error.code}: #{github.data.error.message}
-      else
+      h1 Development Health
+      if github.errors == {}
+        p Error:
+        each error in github.errors
+          p #{error}
 
+      each ticket_type in github.data
         h2 Repo: #{github.data.repo}
         hr
 
-        each metric in github.data.metrics
-          include includes/github_stats
+        if ticket_type.errors
+          p API returned the following error:
+          p.alert #{ticket_type.errors.code}: #{ticket_type.errors.code.message}
+
+        each metric in ticket_type
+          !{JSON.stringify(metric)}
+          //include includes/github_stats

@@ -17,14 +17,14 @@ block content
         each error in github.errors
           p #{error}
 
-      each ticket_type in github.data
-        h2 Repo: #{github.data.repo}
+      each ticket_info, ticket_type in github.data
+        h2 Repo: #{ticket_info.repo}
         hr
 
-        if ticket_type.errors
+        if ticket_info.errors
           p API returned the following error:
-          p.alert #{ticket_type.errors.code}: #{ticket_type.errors.code
+          p.alert #{ticket_info.errors.code}: #{ticket_info.errors.code
 
-        each metric in ticket_type.metrics
+        each metric in ticket_info.metrics
           //!{JSON.stringify(metric)}
           include includes/github_stats

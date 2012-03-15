@@ -12,10 +12,8 @@ block content
   .container
     .content
       h1 Development Health
-      if github.errors == {}
-        p Error:
-        each error in github.errors
-          p #{error}
+      each error in github.errors
+        p Error: #{error}
 
       each ticket_info, ticket_type in github.data
         h2 Repo: #{ticket_info.repo}

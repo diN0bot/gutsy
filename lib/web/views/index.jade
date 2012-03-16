@@ -22,7 +22,9 @@ block content
       .span3
         #banner-block.ablock
           h1 #{name}
-          h3= description
+          h3 
+            #{description} for version #{metadata.current_version} deployed on
+            =format_time(metadata.date_deployed)
 
         #links-block.ablock
           h1 Links
@@ -37,7 +39,7 @@ block content
             ul#events
               for event in events
                 li
-                  p.timestamp #{event.timestamp}
+                  =format_time(event.timestamp)
                   p.name #{event.name}
                   p.description #{event.description}
                   ul.related_links

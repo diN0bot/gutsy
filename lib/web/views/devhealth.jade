@@ -12,11 +12,8 @@ block content
   .container
     .content
       h1 Development Health
-      each error in github.errors
-        p Error: #{error}
+      if github.error
+        p Error: #{e}
 
-      for metric in github.metrics
+      for metric in github.data
         include includes/github_stats
-
-
-

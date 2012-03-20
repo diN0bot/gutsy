@@ -39,6 +39,6 @@ npm test
 
 ## Communication
 
-email: `gutsy@lists.rackspace.com`
-
-irc: `irc.freenode.org#gutsy`
+```
+irc.freenode.org#gutsy
+```

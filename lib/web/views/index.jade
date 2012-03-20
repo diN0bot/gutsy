@@ -60,16 +60,11 @@ block content
           #environments-block.ablock
             include includes/environments
 
-        // oncall shows up in contacts list
-        //if pagerduty
-        //  #pagerduty-block.ablock.middleware-block
-        //    include includes/pagerduty
-
-        if versionone
+        if version_one
           #versionone-block.ablock.middleware-block
             include includes/versionone
 
-        if newrelic
+        if new_relic
           #newrelic-block.ablock.middleware-block
             include includes/newrelic
 

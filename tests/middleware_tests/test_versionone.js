@@ -41,14 +41,14 @@ function _create_mock(req, status, res) {
     //mock = mock.log(console.log);
   }
   return mock;
-};
+}
 
 function _success_mock(req) {
   return _create_mock(
       req,
       200,
       xml_fixture);
-};
+}
 
 function _error_mock(req) {
   // intentionall provide invalid XML
@@ -56,7 +56,7 @@ function _error_mock(req) {
       req,
       500,
       "{'error': {'message': 'API returned error', 'code': 22}}");
-};
+}
 
 var xml_fixture = '<Assets total="10" pageSize="2147483647" pageStart="0"> \
   <Asset href="/VersionOne/rest-1.v1/Data/Story/1021" id="Story:1021"> \

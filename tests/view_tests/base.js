@@ -30,7 +30,8 @@ exports.test_view = function(test, assert, view, devopsjson, middlewares, fn) {
       params: {
         project: devopsjson
       },
-      url: view
+      url: view,
+      nocking: true
   };
 
   // call default middleware

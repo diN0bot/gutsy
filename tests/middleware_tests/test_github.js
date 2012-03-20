@@ -43,14 +43,14 @@ function _create_mock(req, status, res) {
     //mock = mock.log(console.log);
   }
   return mock;
-};
+}
 
 function _success_mock(req) {
   return _create_mock(
       req,
       200,
       data);
-};
+}
 
 function _error_mock(req) {
   // intentionally provide invalid JSON
@@ -58,7 +58,7 @@ function _error_mock(req) {
       req,
       200,
       "{ will [ this ' parse ?");
-};
+}
 
 var data = '{ \
   "pulls": { \

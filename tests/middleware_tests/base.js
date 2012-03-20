@@ -25,7 +25,8 @@ exports.run_test = function(test, assert, devops_filename, middleware_name, fiel
         project: devops_filename
       },
       url: '/p/' + devops_filename,
-      devops_directory: fixtures_path
+      devops_directory: fixtures_path,
+      nocking: true
   };
 
   async.series([function(cb) {

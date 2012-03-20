@@ -2,19 +2,19 @@ var base = require('./base');
 var nock = require('nock');
 
 exports.test_example_minimum = function(test, assert) {
-  base.run_test(test, assert, 'example-minimum.json', 'versionone', 'versionone', _success_mock, false);
+  base.run_test(test, assert, 'example-minimum.json', 'version_one', 'version_one', _success_mock, false);
 };
 
 exports.test_example_simple = function(test, assert) {
-  base.run_test(test, assert, 'example-simple.json', 'versionone', 'versionone', _success_mock, false);
+  base.run_test(test, assert, 'example-simple.json', 'version_one', 'version_one', _success_mock, false);
 };
 
 exports.test_example_full_success = function(test, assert) {
-  base.run_test(test, assert, 'example-full.json', 'versionone', 'versionone', _success_mock, true);
+  base.run_test(test, assert, 'example-full.json', 'version_one', 'version_one', _success_mock, true);
 };
 
 exports.test_example_full_error = function(test, assert) {
-  base.run_test(test, assert, 'example-full.json', 'versionone', 'versionone', _error_mock, true, true);
+  base.run_test(test, assert, 'example-full.json', 'version_one', 'version_one', _error_mock, true, true);
 };
 
 

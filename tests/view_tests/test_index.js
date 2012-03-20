@@ -3,9 +3,10 @@ var middleware = require('web/middleware');
 
 var middlewares =  [middleware.load_devops,
                     middleware.navbar,
-                    middleware.pagerduty,
+                    middleware.new_relic,
+                    middleware.pager_duty,
                     middleware.github,
-                    middleware.versionone];
+                    middleware.version_one];
 
 exports.test_example_minimum_none = function(test, assert) {
   base.test_view(test, assert, 'index.jade', 'example-minimum.json', middlewares);

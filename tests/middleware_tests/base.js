@@ -50,6 +50,8 @@ exports.run_test = function(test, assert, devops_filename, middleware_name, fiel
       assert.isNotNull(mock);
       assert.ok(mock.isDone());
     } else {
+      if (mock_req.devops[field_name] !== null){
+      }
       assert.isNull(mock_req.devops[field_name]);
       assert.isNull(mock);
     }

@@ -36,3 +36,9 @@ Then go to: [http://localhost:3000](http://localhost:3000)
 ```
 npm test
 ```
+
+## Communication
+
+email: `gutsy@lists.rackspace.com`
+
+irc: `irc.freenode.org#gutsy`

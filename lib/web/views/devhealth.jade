@@ -14,7 +14,7 @@ block content
       if github
         h1 Development Health
         if github.error
-          p An error occurred: #{github.error}
+          p!=trace(github.error)
         else if github.data.error
           p API returned the following error:
           p.alert #{github.data.error.code}: #{github.data.error.message}

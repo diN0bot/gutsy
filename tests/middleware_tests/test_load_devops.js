@@ -1,5 +1,7 @@
 var middleware = require('web/middleware');
 var path = require('path');
+var schema = require('../../extern/devopsjson/lib/web/schema').schema;
+var JSV = require('JSV').JSV;
 
 exports.test_example_minimum = function(test, assert) {
   run_test(test, assert, 'example-minimum.json');
@@ -47,6 +49,16 @@ var run_test = function(test, assert, devops_filename) {
     assert.isNull(mock_req.devops.pagerduty);
     assert.isNull(mock_req.devops.versionone);
     assert.isNull(mock_req.devops.github);
+
+    var jsv_env = JSV.createEnvironment('json-schema-draft-03');
+    report = jsv_env.validate(mock_req.devops, schema);
+
+    if (report.errors.length > 0) {
+      console.log("TESTING: ", json_path);
+      console.log("ERRORS: ", report.errors);
+    }
+    assert.equal(report.errors.length, 0);
+
     test.finish();
   });
 };

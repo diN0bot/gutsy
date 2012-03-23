@@ -2,11 +2,6 @@
 var settings = require('settings');
 var middleware = require('web/middleware');
 
-var data = {
-  trace: "div=trace(error)",
-  format_time: "div=format_time(time)"
-};
-
 exports.test_trace_with_debug = function(test, assert) {
   var err = gen_error();
   var output = run_test('trace', err, true);

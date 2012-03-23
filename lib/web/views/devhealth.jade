@@ -15,7 +15,7 @@ block content
         h1 Development Health
         if github.error
           p The github API returned the following error:
-          p.alert=trace(error)
+          p.alert!=trace(github.error)
         else
 
           h2 Repo: #{github.data.repo}

@@ -1,7 +1,5 @@
 var middleware = require('web/middleware');
 var path = require('path');
-var utils = require('utils');
-var settings = require('settings');
 
 exports.test_example_minimum = function(test, assert) {
   run_test(test, assert, 'example-minimum.json');
@@ -53,9 +51,6 @@ var run_test = function(test, assert, devops_filename) {
     assert.isNull(devops.pagerduty);
     assert.isNull(devops.versionone);
     assert.isNull(devops.github);
-
-    report = utils.validate_devops(devops);
-    assert.ok(report.errors.length <= 0, "A devops file did not validate");
     test.finish();
   });
 };

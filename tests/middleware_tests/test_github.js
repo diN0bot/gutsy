@@ -1,6 +1,10 @@
 var base = require('./base');
 var nock = require('nock');
 var url = require('url');
+var fs = require('fs');
+var path = require('path');
+
+var success_data = fs.readFileSync(path.join(__dirname,'fixtures', 'github_success.js'));
 
 exports.test_example_minimum = function(test, assert) {
   base.run_test(test, assert, 'example-minimum.json', 'github', 'github', _success_mock, false);
@@ -43,7 +47,7 @@ function _success_mock(req) {
   return _create_mock(
       req,
       200,
-      data);
+      success_data);
 }
 
 function _error_mock(req) {
@@ -53,30 +57,3 @@ function _error_mock(req) {
       200,
       "{ will [ this ' parse ?");
 }
-
-var data = '{ \
-  "pulls": { \
-    "issue_updated_at": "2012-02-29T21:45:24Z", \
-    "gravatar_id": "2222caaaaaa", \
-    "position": 1, \
-    "number": 1764, \
-    "votes": 0, \
-    "issue_user": {}, \
-    "comments": 0, \
-    "body": "Still need to do validation and notification.", \
-    "title": "that_thing", \
-    "diff_url": "https://github.com/racker/gutsy/pull/1764.diff", \
-    "updated_at": "2012-02-29T21:45:24Z", \
-    "user": { \
-        "login": "ausername" \
-    }, \
-    "patch_url": "https: //github.com/racker/gutsy/pull/1764.patch", \
-    "base": {}, \
-    "mergeable": true, \
-    "created_at": "2012-02-29T21: 45: 24Z", \
-    "issue_created_at": "2012-02-29T21: 45: 24Z", \
-    "labels": [], \
-    "head": {}, \
-    "html_url": "https: //github.com/racker/gutsy/pull/1764", \
-    "state": "open" \
-}}';

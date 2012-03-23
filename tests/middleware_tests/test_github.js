@@ -35,12 +35,6 @@ function _create_mock(req, status, res) {
          parsed_url.host].join(''));
     mock = mock.get(path.join(''));
     mock = mock.reply(status, res);
-    // waiting on closed_pull_requests branch
-    //path.push('/closed');
-    //mock = mock.get(path.join(''));
-    //mock = mock.reply(status, res);
-
-    //mock = mock.log(console.log);
   }
   return mock;
 }

@@ -2,6 +2,7 @@ var base = require('./base');
 var middleware = require('web/middleware');
 
 var middlewares =  [middleware.load_devops,
+										middleware.injector,
                     middleware.navbar,
                     middleware.version_one];
 

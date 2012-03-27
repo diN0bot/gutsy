@@ -19,7 +19,7 @@ exports.test_trace_without_debug = function(test, assert) {
 };
 
 function run_test(function_name, args, debug){
-  var fn = middleware.injector.jade_locals(null, null)[function_name];
+  var fn = middleware.injector.jade_locals({params: null}, {})[function_name];
   var inital_debug_setting = settings.debug;
   var output = null;
   settings.debug = debug;

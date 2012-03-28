@@ -6,6 +6,7 @@ var middlewares =  [middleware.load_devops,
                     middleware.new_relic,
                     middleware.pager_duty,
                     middleware.github,
+                    middleware.dreadnot,
                     middleware.version_one];
 
 exports.test_example_minimum_none = function(test, assert) {

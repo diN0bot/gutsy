@@ -8,19 +8,22 @@
 			p
 				b #{stack.name}:
 				br
-				span deployed #{stack.deploy.name} at #{stack.deploy.time} in #{stack.deploy.region}
+				| deployed
+				a(href="https://"+related_apis.dreadnot.url+'/stacks/'+stack.name+'/regions/'+stack.deploy.region+'/deployments/'+stack.deploy.name)=stack.deploy.name
+				| at #{stack.deploy.time} in #{stack.deploy.region}
 				br
-				a(href=stack.github_href+'/commit/'+stack.deploy.from_revision)=stack.deploy.from_revision
-				span to
-				nbsp
-				a(href=stack.github_href+'/commit/'+stack.deploy.to_revision)=stack.deploy.to_revision
-				span by #{stack.deploy.user}
+				a(href=stack.github_href+'/commit/'+stack.deploy.from_revision)=stack.deploy.from_trunc
+				|  ->
+				a(href=stack.github_href+'/commit/'+stack.deploy.to_revision)=stack.deploy.to_trunc
+				|  (
+				a(href=stack.github_href+'/compare/'+stack.deploy.from_revision+'...'+stack.deploy.to_revision) diff
+				|  ) by #{stack.deploy.user}:
 				if stack.deploy.finished
-					span finished
+					|  finished
 				else
-					span didn't finish
-				span and
+					|  didn't finish
+				| and
 				if stack.deploy.success
-					span succeeded
+					| succeeded
 				else
-					span didn't succeed
+					| didn't succeed

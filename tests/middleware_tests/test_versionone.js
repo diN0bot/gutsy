@@ -31,9 +31,6 @@ function _create_mock(req, status, res) {
     mock = mock.get(
         ['/',
          req.devops.related_apis.version_one.name,
-         //"/rest-1.v1/Data/Defect?where=Scope='Scope:",
-         //req.devops.related_apis.version_one.project,
-         //"',Status!='Done'"].join(""),
          "/rest-1.v1/Data/Defect?where=Status.Name!='Closed'&findin=Scope.Name&find='",
          req.devops.related_apis.version_one.project,
          "'"].join(""));

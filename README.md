@@ -1,5 +1,8 @@
 # Gutsy DevOps Dashboard
 
+[![Build Status](https://secure.travis-ci.org/diN0bot/gutsy.png?branch\
+=closed_pull_requests)](http://travis-ci.org/diN0bot/gutsy)
+
 Gutsy is an app for an out-of-the-box DevOps Dashboard built on top of a
 [DevOps JSON URI](/racker/devopsjson).
 
@@ -27,6 +30,7 @@ npm start
 ```
 
 Then go to: [http://localhost:3000](http://localhost:3000)
+Pages are currently cached for 5 minutes in the local node process to avoid lengthy API calls.
 
 ## Tests
 
@@ -41,3 +45,8 @@ To run tests without installing jscoverage:
 ```
 ./bin/test-nocov
 ```
+
+## Communication
+
+```
+irc.freenode.org#gutsy

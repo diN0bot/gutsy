@@ -51,6 +51,7 @@ var run_test = function(test, assert, devops_filename) {
     assert.isNull(devops.pagerduty);
     assert.isNull(devops.versionone);
     assert.isNull(devops.github);
+    assert.isNull(devops.new_relic);
     test.finish();
   });
 };

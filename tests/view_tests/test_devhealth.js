@@ -1,10 +1,7 @@
 var base = require('./base');
 var middleware = require('web/middleware');
 
-var middlewares = [middleware.load_devops,
-										middleware.injector,
-                   middleware.navbar,
-                   middleware.github];
+var middlewares = [middleware.github];
 
 exports.test_example_minimum_only_github = function(test, assert) {
   base.test_view(test, assert, 'devhealth.jade', 'example-minimum.json', middlewares);

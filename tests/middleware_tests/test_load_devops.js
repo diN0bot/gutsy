@@ -48,10 +48,10 @@ var run_test = function(test, assert, devops_filename) {
     assert.isDefined(devops.dependent_services);
     assert.isDefined(devops.events);
     assert.isDefined(devops.kpi_spec);
-    assert.isNull(devops.pagerduty);
-    assert.isNull(devops.versionone);
-    assert.isNull(devops.github);
-    assert.isNull(devops.new_relic);
+    assert.isNull(devops.pager_duty, 'pagerduty is defined: ' + devops.pager_duty);
+    assert.isNull(devops.version_one, 'versionone is defined' + devops.version_one);
+    assert.isNull(devops.github, 'github is defined\n'+ devops.github);
+    assert.isNull(devops.new_relic, 'new_relic is defined' + devops.new_relic);
     test.finish();
   });
 };

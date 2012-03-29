@@ -16,7 +16,7 @@ but also to realize related links such as on-call rotations.
 Save a devops.json endpoint to file using the crawler:
 
 ```
-cp settings.js.example settings.js
+cp lib/settings.js.example lib/settings.js
 mkdir fixtures
 ./bin/crawl
 ```

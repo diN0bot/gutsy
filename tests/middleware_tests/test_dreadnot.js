@@ -5,9 +5,6 @@ var fs = require('fs');
 var path = require('path');
 var _ = require('underscore');
 
-var success_data_deploy = fs.readFileSync(path.join(__dirname,'fixtures', 'dreadnot_success_deploy.js'));
-var success_data_stack = fs.readFileSync(path.join(__dirname,'fixtures', 'dreadnot_success_stack.js'));
-
 exports.test_example_minimum = function(test, assert) {
   base.run_test(test, assert, 'example-minimum.json', 'dreadnot', 'dreadnot', _success_mock, false);
 };

@@ -3,3 +3,4 @@ fixtures/*
 settings.js
 lib-cov
 npm-debug.log
+.DS_Store

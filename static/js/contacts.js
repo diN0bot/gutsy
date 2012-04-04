@@ -15,7 +15,7 @@ $(document).ready(function() {
     if (!el.hasClass("on-call")) {
       info.hide();
     } else {
-      toggle.text("-");
+      toggle.text("\u25BC");
     }
     info.css("padding", "5px");
 
@@ -24,9 +24,9 @@ $(document).ready(function() {
       var info = toggle.next().next();
       info.toggle();
       if (info.css("display") === "none") {
-        toggle.text("+");
+        toggle.text("\u25B6");
       } else {
-        toggle.text("-");
+        toggle.text("\u25BC");
       }
     });
   });
@@ -38,14 +38,14 @@ $(document).ready(function() {
     var contact = $(this).parent().next().children().children().children().children();
     var infos = contact.children("ul");
     var plus = contact.children(".plus");
-    if ($(this).text() === "+") {
+    if ($(this).text() === "\u25B6") {
       infos.css("display", "block");
-      plus.text("-");
-      $(this).text("-");
+      plus.text("\u25BC");
+      $(this).text("\u25BC");
     } else {
       infos.css("display", "none");
-      plus.text("+");
-      $(this).text("+");
+      plus.text("\u25B6");
+      $(this).text("\u25B6");
     }
   });
 });

@@ -3,6 +3,28 @@ extends layout
 block append scripts
 	script(type='text/javascript')
 		var hosts = !{JSON.stringify(hosts)};
+		$(document).ready(function(){
+			var update_table = function(selected){
+				var klass = {'error': '.health-error', 'warning': '.health-warning',
+					'unknown': '.health-unknown', 'ok': '.health-ok',
+					'all': '.health-error,.health-warning,.health-unknown,.health-ok'}[selected];
+				$('.service-row').each(function(index, item){
+					item = $(item);
+					if(item.is(klass)){
+						item.show();
+					}else{
+						item.hide();
+					}
+				})
+				$('#stats'+klass).show();
+			};
+			var selected = $('select#filter-health').val();
+			update_table(selected);
+			$('select#filter-health').change(function(){
+				var selected = $(this).val();
+				update_table(selected);
+			});
+		});
 
 block append css
 	link(href='/static/css/devhealth.less', rel='stylesheet/less', type='text/css')
@@ -27,50 +49,59 @@ block append css
 			width: 16%;
 			vertical-align: middle;
 		}
+		.table td{
+			border: 1px solid #000;
+		}
 		.table th{
 			font-weight: bold;
-			border-left: 1px solid #000;
+			border: 2px solid #000;
 		}
 		.table tr{
-			border: 2px solid #000;
 			vertical-align: middle;
 			font-weight: bold;
 		}
-
+		.host-row{
+			border-top: 2px solid #000;
+			display: none;
+		}
+		.service-row{
+			border-top: 1px dotted #000;
+			display: none;
+		}
+		select{
+			width: 100px;
+		}
 block content
 	.container
 		h1 Services:
 
-		table.table
-			tr
-				th host
-				th service(s)
+		h3
+			| filter on health:
+			select(id='filter-health')
+				option error
+				option warning
+				option unknown
+				option ok
+				option all
+
+		table.table#stats
+			tr#header
 				th type
-				th health
+				th name
+				th host
 				th ip
+				th health
 				th last updated
 
 			for host, host_name in hosts
-				- var host_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
-				tr(class=host_color)
-					td=host_name
-					td
-						- var keys = Object.keys(host.services)
-							for key in keys
-								a(href="#"+host_name+'_'+key)=key
-								| <npsb/>
-					td [server]
-					td=health_enum_to_string(host.health)
-					td=host.ip
-					td=format_time(host.timestamp)
 				for service,name in host.services
 					- var service_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
-					tr(class=host_color)
-						td ...
-						td(class=service_color)
+					tr(class=service_color+' service-row')
+						td=service.service
+						td
 							a(name=host_name+'_'+name)=name
-						td(class=service_color)=service.service
-						td(class=service_color)=health_enum_to_string(service.health)
-						td(class=service_color)=service.ip
-						td(class=service_color)=format_time(service.timestamp)
+						td=host_name
+						td=service.ip
+						td=health_enum_to_string(service.health)
+						td=format_time(service.timestamp)
 

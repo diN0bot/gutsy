@@ -64,19 +64,27 @@ block append css
 			border-top: 1px dotted #000;
 			display: none;
 		}
+		.data-row a{
+			color: #333;
+			text-decoration: underline;
+		}
 		select{
 			width: 100px;
 		}
+		table.table .table-hack{
+			margin: 0; padding: 0; line-height: 0; height: 0; border: 0 none;
+		}
+
 block content
 	.container
 		h3
-		| filters: health:
-		select(id='filter-health')
-			option error
-			option warning
-			option unknown
-			option ok
-			option all
+			| filters: health:
+			select(id='filter-health')
+				option error
+				option warning
+				option unknown
+				option ok
+				option all
 
 		h1 Services:
 
@@ -101,6 +109,15 @@ block content
 						td=service.ip
 						td=health_enum_to_string(service.health)
 						td=format_time(service.timestamp)
+
+
+			tr(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
 
 		h1 Hosts:
 
@@ -127,10 +144,11 @@ block content
 					td=host.ip
 					td=health_enum_to_string(host.health)
 					td=format_time(host.timestamp)
-			tr()
-				td
-				td
-				td
-				td
-				td
-				td
+
+			tr(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")
+				td(class="table-hack")

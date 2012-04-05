@@ -29,10 +29,12 @@ block append css
 		}
 		.table th{
 			font-weight: bold;
+			border-left: 1px solid #000;
 		}
 		.table tr{
 			border: 2px solid #000;
 			vertical-align: middle;
+			font-weight: bold;
 		}
 
 block content
@@ -42,7 +44,7 @@ block content
 		table.table
 			tr
 				th host
-				th service
+				th service(s)
 				th type
 				th health
 				th ip
@@ -51,15 +53,22 @@ block content
 			for host, host_name in hosts
 				- var host_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
 				tr(class=host_color)
-					td(colspan=3)=host_name
+					td=host_name
+					td
+						- var keys = Object.keys(host.services)
+							for key in keys
+								a(href="#"+host_name+'_'+key)=key
+								| <npsb/>
+					td [server]
 					td=health_enum_to_string(host.health)
 					td=host.ip
 					td=format_time(host.timestamp)
 				for service,name in host.services
 					- var service_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
 					tr(class=host_color)
-						td
-						td(class=service_color)=name
+						td ...
+						td(class=service_color)
+							a(name=host_name+'_'+name)=name
 						td(class=service_color)=service.service
 						td(class=service_color)=health_enum_to_string(service.health)
 						td(class=service_color)=service.ip

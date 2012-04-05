@@ -2,6 +2,66 @@ extends layout
 
 block append scripts
 	script(type='text/javascript')
-		| var services = #{services}
+		var hosts = !{JSON.stringify(hosts)};
+
+block append css
+	link(href='/static/css/devhealth.less', rel='stylesheet/less', type='text/css')
+	style(type="text/css")
+		.health-ok{
+			background-color: #B9FAEA;
+		}
+		.health-warning{
+			background-color: #F8FAB9;
+		}
+		.health-error{
+			background-color: #FF7D7D;
+		}
+		.health-unknown{
+			background-color: #B8C5FC;
+		}
+		.table{
+			border: 2px solid #000;
+			border-radius: 10px;
+		}
+		.table td,th{
+			width: 16%;
+			vertical-align: middle;
+		}
+		.table th{
+			font-weight: bold;
+		}
+		.table tr{
+			border: 2px solid #000;
+			vertical-align: middle;
+		}
+
 block content
-	asdf
+	.container
+		h1 Services:
+
+		table.table
+			tr
+				th host
+				th service
+				th type
+				th health
+				th ip
+				th last updated
+
+			for host, host_name in hosts
+				- var host_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
+				tr(class=host_color)
+					td(colspan=3)=host_name
+					td=health_enum_to_string(host.health)
+					td=host.ip
+					td=format_time(host.timestamp)
+				for service,name in host.services
+					- var service_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
+					tr(class=host_color)
+						td
+						td(class=service_color)=name
+						td(class=service_color)=service.service
+						td(class=service_color)=health_enum_to_string(service.health)
+						td(class=service_color)=service.ip
+						td(class=service_color)=format_time(service.timestamp)
+

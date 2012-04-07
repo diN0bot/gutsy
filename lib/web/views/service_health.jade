@@ -24,13 +24,14 @@ block append scripts
 					}
 				})
 			};
-			update_table(3);
 			$('select#filter-health').change(function(e){
 				var selected = e.target;
 				var option = selected.options[selected.selectedIndex];
 				var to_filter = $(option).attr('class');
 				update_table(to_filter);
 			});
+			$('select#filter-health').val('#{HEALTH_STRING_ERROR}');
+			update_table('#{HEALTH_ERROR}');
 		});
 
 block append css
@@ -101,59 +102,59 @@ block content
 				th ip
 				th health
 				th last updated
+			if hosts
+				for host, host_name in hosts
+					for service,name in host.services
+						- var service_color = 'health-' + HEALTH_ENUM[service.health]
+						tr(class=service_color+' data-row')
+							td=service.service
+							td
+								a(name=host_name+'_'+name)=name
+							td
+								a(href="#host-name-"+host_name)=host_name
+							td=host.ip
+							td=health_enum_to_string(service.health)
+							td=format_time(service.timestamp)
 
-			for host, host_name in hosts
-				for service,name in host.services
-					- var service_color = 'health-' + HEALTH_ENUM[service.health]
-					tr(class=service_color+' data-row')
-						td=service.service
+
+				tr(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+
+			h1 Hosts:
+
+			table.table#host-stats
+				tr#header
+					th hostname
+					th(colspan=2) services provided
+					th ip
+					th health
+					th last updated
+
+				for host, host_name in hosts
+					- var host_color = 'health-' + HEALTH_ENUM[host.health]
+					tr(class=host_color+' data-row')
 						td
-							a(name=host_name+'_'+name)=name
-						td
-							a(href="#host-name-"+host_name)=host_name
+							a(name="host-name-"+host_name)=host_name
+						td(colspan=2)
+							-var services = Object.keys(host.services);
+							| [
+							for key in services
+								a(href='#'+host_name+'_'+key)=key
+								| ,<npsb>
+							| ]
 						td=host.ip
-						td=health_enum_to_string(service.health)
-						td=format_time(service.timestamp)
+						td=health_enum_to_string(host.health)
+						td=format_time(host.timestamp)
 
-
-			tr(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-
-		h1 Hosts:
-
-		table.table#host-stats
-			tr#header
-				th hostname
-				th(colspan=2) services provided
-				th ip
-				th health
-				th last updated
-
-			for host, host_name in hosts
-				- var host_color = 'health-' + HEALTH_ENUM[host.health]
-				tr(class=host_color+' data-row')
-					td
-						a(name="host-name-"+host_name)=host_name
-					td(colspan=2)
-						-var services = Object.keys(host.services);
-						| [
-						for key in services
-							a(href='#'+host_name+'_'+key)=key
-							| ,<npsb>
-						| ]
-					td=host.ip
-					td=health_enum_to_string(host.health)
-					td=format_time(host.timestamp)
-
-			tr(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
-				td(class="table-hack")
+				tr(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")
+					td(class="table-hack")

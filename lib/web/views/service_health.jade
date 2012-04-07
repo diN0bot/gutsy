@@ -5,9 +5,16 @@ block append scripts
 		var hosts = !{JSON.stringify(hosts)};
 		$(document).ready(function(){
 			var update_table = function(selected){
-				var klass = {'error': '.health-error', 'warning': '.health-warning',
-					'unknown': '.health-unknown', 'ok': '.health-ok',
-					'all': '.health-error,.health-warning,.health-unknown,.health-ok'}[selected];
+				var klass = "";
+				var healths = !{JSON.stringify(HEALTH_ENUM)};
+				var iter;
+				if (selected == #{SHOW_ALL}){
+					$.each(healths, function(key, value){
+						klass += '.health-' + value + ',';
+					});
+				}else{
+					klass = '.health-'+healths[selected];
+				}
 				$('.data-row').each(function(index, item){
 					item = $(item);
 					if(item.is(klass)){
@@ -16,29 +23,29 @@ block append scripts
 						item.hide();
 					}
 				})
-				$('#service-stats'+klass).show();
 			};
-			var selected = $('select#filter-health').val();
-			update_table(selected);
-			$('select#filter-health').change(function(){
-				var selected = $(this).val();
-				update_table(selected);
+			update_table(3);
+			$('select#filter-health').change(function(e){
+				var selected = e.target;
+				var option = selected.options[selected.selectedIndex];
+				var to_filter = $(option).attr('class');
+				update_table(to_filter);
 			});
 		});
 
 block append css
 	link(href='/static/css/devhealth.less', rel='stylesheet/less', type='text/css')
 	style(type="text/css")
-		.health-ok{
+		.health-#{HEALTH_STRING_OK}{
 			background-color: #B9FAEA;
 		}
-		.health-warning{
+		.health-#{HEALTH_STRING_PROBLEM}{
 			background-color: #F8FAB9;
 		}
-		.health-error{
+		.health-#{HEALTH_STRING_ERROR}{
 			background-color: #FF7D7D;
 		}
-		.health-unknown{
+		.health-#{HEALTH_STRING_UNKNOWN}{
 			background-color: #B8C5FC;
 		}
 		.table{
@@ -80,11 +87,9 @@ block content
 		h3
 			| filters: health:
 			select(id='filter-health')
-				option error
-				option warning
-				option unknown
-				option ok
-				option all
+				for key,value in HEALTH_ENUM
+					option(class=value)=key
+				option(class=SHOW_ALL) ALL
 
 		h1 Services:
 
@@ -99,14 +104,14 @@ block content
 
 			for host, host_name in hosts
 				for service,name in host.services
-					- var service_color = ['health-ok','health-warning','health-error',"health-unknown"][service.health-1]
+					- var service_color = 'health-' + HEALTH_ENUM[service.health]
 					tr(class=service_color+' data-row')
 						td=service.service
 						td
 							a(name=host_name+'_'+name)=name
 						td
 							a(href="#host-name-"+host_name)=host_name
-						td=service.ip
+						td=host.ip
 						td=health_enum_to_string(service.health)
 						td=format_time(service.timestamp)
 
@@ -130,10 +135,10 @@ block content
 				th last updated
 
 			for host, host_name in hosts
-				- var host_color = ['health-ok','health-warning','health-error',"health-unknown"][host.health-1]
+				- var host_color = 'health-' + HEALTH_ENUM[host.health]
 				tr(class=host_color+' data-row')
 					td
-						a(name="#host-name-"+host_name)=host_name
+						a(name="host-name-"+host_name)=host_name
 					td(colspan=2)
 						-var services = Object.keys(host.services);
 						| [

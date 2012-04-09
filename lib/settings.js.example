@@ -33,6 +33,12 @@ exports.external_creds = {
 //exports.private_key = './keys/key.pem';
 //exports.cert = './keys/cert.pem';
 
+// A list of [username, password] for authenticating basic auth requests to the api
+// This must be defined to support the API
+//exports.valid_users = [
+//    ['username', 'password']
+//];
+
 // show stack traces in errors to users when available
 exports.debug = true;
 

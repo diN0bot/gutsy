@@ -27,6 +27,12 @@ exports.external_creds = {
       }
     }
 };
+
+// Keys used for the API server- these must exist to support push updates
+// Note: this path is from the root directory of the project
+//exports.private_key = './keys/key.pem';
+//exports.cert = './keys/cert.pem';
+
 // show stack traces in errors to users when available
 exports.debug = true;
 

@@ -16,8 +16,9 @@
 
 basedir=`dirname $0`
 
-NODE_PATH=$NODE_PATH:${basedir}/../lib-cov ./node_modules/.bin/whiskey --coverage \
---tests "tests/middleware_tests/test_settings.js \
+NODE_PATH=$NODE_PATH:${basedir}/../lib-cov ./node_modules/.bin/whiskey --test-init-file \
+	"lib/init_tests.js" --coverage \
+	--tests "tests/middleware_tests/test_settings.js \
 tests/view_tests/test_index.js \
 tests/view_tests/test_defects.js \
 tests/view_tests/test_devhealth.js \

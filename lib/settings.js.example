@@ -32,3 +32,6 @@ exports.debug = true;
 
 // gutsy flushes the current state of services to disk this often (in seconds)
 exports.flush_stats_time = 10;
+
+// testing flag- don't touch me
+exports.TESTING = false;

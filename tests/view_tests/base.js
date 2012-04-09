@@ -32,8 +32,7 @@ exports.test_view = function(test, assert, view, devopsjson, middlewares, fn) {
     params: {
       project: devopsjson
     },
-    url: view,
-    nocking: true
+    url: view
   };
 
   var res = new utils.mock_res();

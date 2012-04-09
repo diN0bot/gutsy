@@ -30,8 +30,11 @@ exports.external_creds = {
 // show stack traces in errors to users when available
 exports.debug = true;
 
-// gutsy flushes the current state of services to disk this often (in seconds)
-exports.flush_stats_time = 10;
+// gutsy flushes the current state of services to disk this often (in ms)
+exports.flush_stats_interval = 10 * 1000;
 
 // testing flag- don't touch me
-exports.TESTING = false;
+exports.testing = false;
+
+exports.flush_file_path = '_service_stats.json';
+exports.testing_flush_file_path = exports.flush_file_path + '.testing';

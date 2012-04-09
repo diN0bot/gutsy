@@ -27,5 +27,8 @@ exports.external_creds = {
       }
     }
 };
-
+// show stack traces in errors to users when available
 exports.debug = true;
+
+// gutsy flushes the current state of services to disk this often (in seconds)
+exports.flush_stats_time = 10;

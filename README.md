@@ -18,9 +18,13 @@ Save a devops.json endpoint to file using the crawler:
 ```
 cp lib/settings.js.example lib/settings.js
 mkdir fixtures
-** edit lib/settings.js to correct this path:
-   exports.saved_crawls_path = "/EDIT/ABSOLUTE/PATH/fixtures";
 ./bin/crawl
+```
+
+Note: on production deployments, you may need to edit lib/settings.js to an absolute path:
+
+```
+exports.saved_crawls_path = "/ABSOLUTE/PATH/fixtures";
 ```
 
 ## Website

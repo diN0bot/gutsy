@@ -10,7 +10,7 @@ block content
   .container
     .content
       if version_one
-        h1 VersionOne - Open Defects
+        h1 VersionOne - Number of Open Defects
         if version_one.error
           p The version_one API returned the following error:
           p.alert!=trace(version_one.error)
@@ -18,7 +18,10 @@ block content
           div
             - each v, k in version_one.data.byAge
               hr
-              h2.title \u25B6 #{k} Day(s) old: #{v.total_count}
+              h2.title
+                span.arrow \u25B6
+                span.sevcount #{v.total_count}
+                #{k}
                 for vcount, ksev in v.sev_count
                   if vcount != 0
                       if ksev === "1"
@@ -41,13 +44,15 @@ block content
                       th Changed By
                       th Defect Name
                   tbody
-                    - each asset in v.defects
-                      tr
-                        td #{new Date(asset.attributes['CreateDate']).getMonth()+1}/#{new Date(asset.attributes['CreateDate']).getDate()}
-                        td #{asset.attributes['Status.Name'] || '-'}
-                        td(class="sev#{asset.severity}") #{asset.attributes['Custom_Severity.Name'] || '-'}
-                        td
-                          a(href="http://#{related_apis.version_one.host}/#{related_apis.version_one.name}/member.mvc/Summary?oidToken=#{asset.relations['ChangedBy'].idref}") #{asset.attributes['ChangedBy.Name'] || '-'}
-                        td
-                          a(href="http://#{related_apis.version_one.host}/#{related_apis.version_one.name}/defect.mvc/Summary?oidToken=#{asset.id}") #{asset.attributes['Name']}
-
+                    if v.defects.length
+                      - each asset in v.defects
+                        tr
+                          td #{new Date(asset.attributes['CreateDate']).getMonth()+1}/#{new Date(asset.attributes['CreateDate']).getDate()}
+                          td #{asset.attributes['Status.Name'] || '-'}
+                          td(class="sev#{asset.severity}") #{asset.attributes['Custom_Severity.Name'] || '-'}
+                          td
+                            a(href="http://#{related_apis.version_one.host}/#{related_apis.version_one.name}/member.mvc/Summary?oidToken=#{asset.relations['ChangedBy'].idref}") #{asset.attributes['ChangedBy.Name'] || '-'}
+                          td
+                            a(href="http://#{related_apis.version_one.host}/#{related_apis.version_one.name}/defect.mvc/Summary?oidToken=#{asset.id}") #{asset.attributes['Name']}
+                    else
+                      p No defects!

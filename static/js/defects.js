@@ -5,7 +5,7 @@
  * Clicking on the numbers displays all event information.
  */
 $(document).ready(function() {
-  $(".title").click(function () {
+  $(".title").css("cursor", "pointer").click(function () {
     $(this).next().children().each(function() {
       $(this).toggle();
     });

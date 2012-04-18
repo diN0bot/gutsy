@@ -1,4 +1,4 @@
-var utils = require('utils');
+var utils = require('../lib/utils');
 var settings = require('settings');
 var fs = require('fs');
 var path = require('path');

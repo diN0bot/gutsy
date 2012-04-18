@@ -4,4 +4,7 @@
     p The version_one API returned the following error:
     p.alert!=trace(version_one.error)
   else
-    p Number of defects: #{version_one.data.total}
+    if version_one.data
+      p Number of defects: #{version_one.data.total}
+    else
+      p No data from version_one

@@ -15,6 +15,7 @@
     "express": "2.5.x",
     "jade": "0.20.x",
     "jshint": "0.5.x",
+    "JSV": "4.x",
     "logmagic": "0.1.x",
     "newrelicapi": "0.0.2",
     "nock": "0.10.x",

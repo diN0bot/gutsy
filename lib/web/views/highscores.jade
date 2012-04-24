@@ -1,0 +1,22 @@
+extends layout
+
+block append css
+  link(href='/static/css/devhealth.less', rel='stylesheet/less', type='text/css')
+
+block content
+  .container
+    .content
+      if highscores
+        h1 HIGHSCORES
+        if highscores.error
+          p The highscores API returned the following error:
+          p.alert!=trace(highscores.error)
+        else
+          table
+            tr
+              th Name
+              th Score
+            each row in highscores.data
+              tr
+                td=row.username
+                td=row.score

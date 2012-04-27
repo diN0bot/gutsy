@@ -1,3 +1,17 @@
 #!/bin/bash
 
-./node_modules/.bin/jshint $(find ./lib -type f -name "*.js") --config jshint.json
+JS_FILES=`find ./lib -type f -name "*.js"`
+
+./node_modules/.bin/jshint $JS_FILES --config jshint.json
+
+echo "Searching for tabs..."
+TABS=`grep -l $'\t' $JS_FILES | wc -l`
+
+if [ $TABS -gt 0 ]
+then
+  echo "Not cool! Tabs found in:"
+  grep -l $'\t' $JS_FILES
+  exit 1
+else
+  echo "No files with tabs. OK"
+fi

@@ -7,7 +7,7 @@ block content
   .container
     .content
       if highscores
-        h1 #{project} LEGENDS
+        h1 #{req.params.project} LEGENDS
         if highscores.error
           p The highscores API returned the following error:
           p.alert!=trace(highscores.error)

@@ -32,7 +32,7 @@ block content
             ul
             if pager_duty.error
               p.alert!=trace(pager_duty.error)
-            else
+            else if pager_duty.data
               for team in project.contacts
                   include includes/team_contacts
 

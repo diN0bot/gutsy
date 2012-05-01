@@ -29,12 +29,13 @@ block content
           h1 Contacts
             span#contacts-plus \u25B6
           .contacts
-            ul
-            if pager_duty.error
-              p.alert!=trace(pager_duty.error)
-            else if pager_duty.data
-              for team in project.contacts
-                  include includes/team_contacts
+            if pager_duty
+              if pager_duty.error
+                p.alert!=trace(pager_duty.error)
+              else if pager_duty.data
+                ul
+                  for team in project.contacts
+                      include includes/team_contacts
 
       .span3
         if project.environments.length

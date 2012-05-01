@@ -43,14 +43,17 @@ block content
           #environments-block.ablock
             include includes/environments
 
+        - var version_one = version_one
         if version_one
           #versionone-block.ablock.middleware-block
             include includes/version_one
 
+        - var new_relic = new_relic
         if new_relic
           #newrelic-block.ablock.middleware-block
             include includes/new_relic
 
+        - var dreadnot = dreadnot
         if dreadnot
           #dreadnot-block.ablock.middleware-block
             include includes/dreadnot

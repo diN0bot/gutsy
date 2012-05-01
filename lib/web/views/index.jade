@@ -29,6 +29,7 @@ block content
           h1 Contacts
             span#contacts-plus \u25B6
           .contacts
+            - var pager_duty = pager_duty
             if pager_duty
               if pager_duty.error
                 p.alert!=trace(pager_duty.error)

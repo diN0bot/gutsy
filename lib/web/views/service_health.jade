@@ -56,8 +56,8 @@ block append css
       border: 2px solid #000;
       border-radius: 10px;
     }
-    .table td,th{
-      width: 16%;
+    .table tbody td, thead th{
+      width: 14%;
       vertical-align: middle;
     }
     .table td{
@@ -98,14 +98,13 @@ block content
 
       h1 Services:
       if hosts
-        table.table#service-stats.table-stats.sortable.table-striped
+        table.table#service-stats.table-stats.sortable
           thead
             tr#header
               th type
               th name
               th host
               th ip
-              th health
               th last updated
               th metrics
           tbody
@@ -119,14 +118,14 @@ block content
                   td
                     a(href="#host-name-"+host_name)=host_name
                   td=host.ip
-                  td=health_enum_to_string(service.health)
                   td=format_time(service.timestamp)
                   td
-                    for metric in service.metrics
-                      p #{metric.name}: #{metric.value}
+                    - var service_metrics = service.metrics
+                    if service_metrics
+                      for metric in service_metrics
+                        p #{metric.name}: #{metric.value}
 
             tr(class="table-hack")
-              td(class="table-hack")
               td(class="table-hack")
               td(class="table-hack")
               td(class="table-hack")
@@ -136,7 +135,7 @@ block content
 
         h1 Hosts:
 
-        table.table#host-stats.table-stats.sortable.table-striped
+        table.table#host-stats.table-stats.sortable
           thead
             tr#header
               th hostname

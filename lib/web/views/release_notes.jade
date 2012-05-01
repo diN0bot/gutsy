@@ -20,6 +20,13 @@ block content
     .content
       h1 Release Notes
 
+      -var start = start;
+      -var end = end;
+      -var cutoff = cutoff;
+
+      if (start && end)
+        p between #{start} and #{end} created after #{cutoff}
+
       if (errors)
         p.alert!=trace(errors)
 
@@ -30,9 +37,9 @@ block content
 
         form(method="post", id="notes-form")
           label(for="start") Start
-          input(type="text", name="start", value=Date())
+          input(type="text", name="start", value=start || Date())
           label(for="end") End
-          input(type="text", name="end", value=Date())
+          input(type="text", name="end", value=end || Date())
           input(type="submit", value=" GO! ", style="margin-left: 50px; width: 70px; height: 30px;")
 
         p

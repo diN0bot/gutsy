@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .container
+    .content
+        h1 Release Notes
+        if errors
+          p The github API returned the following errors:
+          p.alert!=trace(errors)
+        else
+          each note in notes
+            p!{JSON.stringify(note)}

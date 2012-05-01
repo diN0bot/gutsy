@@ -30,8 +30,11 @@ block content
             span#contacts-plus \u25B6
           .contacts
             ul
+            if pager_duty.error
+              p.alert!=trace(pager_duty.error)
+            else
               for team in project.contacts
-                include includes/team_contacts
+                  include includes/team_contacts
 
       .span3
         if project.environments.length

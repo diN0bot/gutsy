@@ -1,12 +1,54 @@
 extends layout
 
+block append css
+  | <style type="text/css">
+  | #notes-form input{
+  |   width: 300px;
+  | }
+  | .note{
+  |   border-top: 1px dashed #333;
+  |   padding: 7px;
+  | }
+  | p.title{
+  |   font-weight: bold;
+  |   font-size: 16px;
+  | }
+  | </style>
+
 block content
   .container
     .content
-        h1 Release Notes
-        if errors
-          p The github API returned the following errors:
-          p.alert!=trace(errors)
-        else
-          each note in notes
-            p!{JSON.stringify(note)}
+      h1 Release Notes
+
+      if (errors)
+        p.alert!=trace(errors)
+
+      -var get = get || errors !== null
+      if (get)
+        p
+          | This will take some time, be patient.  The dates can be anyting that new Date() will parse and are inclusive.
+
+        form(method="post", id="notes-form")
+          label(for="start") Start
+          input(type="text", name="start", value=Date())
+          label(for="end") End
+          input(type="text", name="end", value=Date())
+          input(type="submit", value=" GO! ", style="margin-left: 50px; width: 70px; height: 30px;")
+
+        p
+          | NOTE: gutsy stops looking at pull requests when they were created one month before the start date since github returns pull requests in order of creation and doesn't allow filtering of any sort.
+      else
+        each note in notes
+          div.note
+            p.title=note.title
+            p.body=note.body
+            p.links
+              b links:
+              | <nbsp/>
+              a(href=note.link) on github
+              | <nbsp/> |<nbsp/>
+              a(href=note.comments) comments
+            p
+              b merged on:
+              | <nbsp/>
+              #{note.merged_at}

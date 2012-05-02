@@ -1,0 +1,21 @@
+{
+    "name": "Gutsy",
+    "description": "",
+    "tags": [
+        "node",
+        "dashboard"
+    ],
+    "contacts": [
+        {
+            "name": "Geoff Greer",
+            "sso": "geoffrey.greer",
+            "github": "http://github.com/ggreer",
+            "mailto": "geoffrey.greer@rackspace.com",
+            "ircnick": "ggreer"
+        }
+    ],
+    "links": {
+        "Site - Production": "http://dashboard.rax.io/"
+    },
+    "dependent_services": []
+}

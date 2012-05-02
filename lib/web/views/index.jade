@@ -29,8 +29,7 @@ block content
           h1 Contacts
             span#contacts-plus \u25B6
           .contacts
-            - var pager_duty = pager_duty
-            if pager_duty
+            if pager_duty.config
               if pager_duty.error
                 p.alert!=trace(pager_duty.error)
               else if pager_duty.data
@@ -43,18 +42,15 @@ block content
           #environments-block.ablock
             include includes/environments
 
-        - var version_one = version_one
-        if version_one
+        if version_one.config
           #versionone-block.ablock.middleware-block
             include includes/version_one
 
-        - var new_relic = new_relic
-        if new_relic
+        if new_relic.config
           #newrelic-block.ablock.middleware-block
             include includes/new_relic
 
-        - var dreadnot = dreadnot
-        if dreadnot
+        if dreadnot.config
           #dreadnot-block.ablock.middleware-block
             include includes/dreadnot
 

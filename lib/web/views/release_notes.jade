@@ -58,12 +58,16 @@ block content
           div.note
             p.title
               =note.title
-              | <nbsp/> (
+              | <nbsp/> -
               =format_time(note.merged_at)
-              | <nbsp/> )
+              | <nbsp/>
 
             div.body
-              !=markdown(note.body)
+              !{markdown(note.body)}
+              if note.v1.error
+                !{trace(note.v1.error)}
+              if note.v1.data
+                !{note.v1.data}
             p.links
               | - <nbsp/>
               | merged
@@ -71,10 +75,15 @@ block content
               i=note.merged_at
               | <nbsp/>
               a(href=note.link) on github
+              if note.v1.href
+                | and
+                | <nbsp/>
+                a(href=note.v1.href) on V1
+
 
       -var start = start;
       -var end = end;
       -var cutoff = cutoff;
 
       if (start && end)
-        p Notes between #{start} and #{end} created after #{cutoff}
+        p Notes between #{start} and #{end}

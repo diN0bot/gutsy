@@ -74,14 +74,16 @@ block content
               p.links
                 | - merged
                 nbsp
-                i=note.merged_at
+                i
+                  #{note.merged_at.toUTCString()}
                 | <nbsp/>
                 a(href=note.link) on github
                 if note.v1.href
                   br
                   | - created
                   nbsp
-                  i=note.v1.date
+                  i
+                    #{note.v1.date.toUTCString()}
                   | <nbsp/>
                   a(href='https://' + v1_host + note.v1.href) on V1
 
